@@ -1,19 +1,25 @@
-# 🎈 Blank app template
+# Ukraine Food Prices Streamlit App
 
-A simple Streamlit app template for you to modify!
+This Streamlit app provides a visualization of food prices in Ukraine. The application allows users to upload CSV files containing food price data, view and analyze the data, and generate various types of charts.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Features
 
-### How to run it on your own machine
+- **Data Upload:** Upload CSV files containing food price data.
+- **Data Display:** View raw data and summaries in table format.
+- **Charts and Graphs:**
+  - **Line Charts** showing price trends over time using Plotly.
+  - **Bar Charts** for visualizing average prices by date using Matplotlib.
+- **Interactive Filters:** Select specific products to filter the displayed data.
+- **Progress Indicator:** Shows a loading spinner while processing data.
+- **Navigation:** Use a sidebar to navigate between different pages (Home, About Us, Contact).
+- **Custom Components:** Includes custom HTML components.
 
-1. Install the requirements
+## Data
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+The app expects CSV files with the following columns:
+- `date` - Date of the price record
+- `price` - Price of the product
+- `category` - Category or name of the product
 
-2. Run the app
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+
