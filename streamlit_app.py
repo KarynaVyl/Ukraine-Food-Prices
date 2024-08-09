@@ -13,10 +13,6 @@ if uploaded_file is not None:
     # Завантаження даних
     data = pd.read_csv(uploaded_file)
     
-    # Перевірка типів даних
-    st.write("Типи даних у стовпцях:")
-    st.write(data.dtypes)
-
     # Перетворення стовпця 'price' у рядковий тип та видалення ком
     data['price'] = data['price'].astype(str).str.replace(',', '', regex=False)
     
@@ -24,35 +20,42 @@ if uploaded_file is not None:
     data['price'] = pd.to_numeric(data['price'], errors='coerce')
 
     # Перевірка пропущених значень
-    st.write("Кількість пропущених значень у стовпці 'price':")
-    st.write(data['price'].isna().sum())
-
-    # Обробка пропущених значень
     data['price'].fillna(0, inplace=True)
+
+    # Видалення зайвих колонок з перевіркою наявності
+    columns_to_drop = ['unit', 'currency', 'country', 'adnmane', 'mktname', 
+                       'mktid', 'cmid', 'umid', 'catid', 'sn', 'default']
+    columns_to_drop = [col for col in columns_to_drop if col in data.columns]
+    data = data.drop(columns=columns_to_drop)
 
     # Відображення даних
     st.header("Перегляд даних")
     st.dataframe(data)
 
-    # Відображення таблиці
+    # Відображення таблиці (без стовпця нумерації)
     st.header("Таблиця даних")
-    st.table(data.head())
+    st.table(data.reset_index(drop=True).head())
 
-    # Графіки з Plotly
+    # Графіки з Plotly (оптимізований графік)
     st.header("Графіки з Plotly")
-    fig = px.line(data, x='date', y='price', color='category')  # Замініть 'category' на правильний стовпець
+    fig = px.line(data, x='date', y='price', color='category',  # Використання стовпця 'category'
+                  title='Ціни на продукти по датах')
+    fig.update_layout(xaxis_title='Дата', yaxis_title='Ціна', hovermode="x unified")
     st.plotly_chart(fig)
 
-    # Графіки з Matplotlib
+    # Графіки з Matplotlib (оптимізована дата)
     st.subheader("Графіки з Matplotlib")
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 5))
     data.groupby('date')['price'].mean().plot(kind='bar', ax=ax)  # Стовпчиковий графік
+    ax.set_xlabel('Дата')
+    ax.set_ylabel('Середня ціна')
+    plt.xticks(rotation=45, ha='right')
     st.pyplot(fig)
 
     # Інтерактивні елементи
     st.header("Інтерактивні елементи")
-    product = st.selectbox('Оберіть продукт', data['category'].unique())  # Замініть 'category' на правильний стовпець
-    filtered_data = data[data['category'] == product]  # Замініть 'category' на правильний стовпець
+    product = st.selectbox('Оберіть продукт', data['category'].unique())  # Використання стовпця 'category'
+    filtered_data = data[data['category'] == product]  
     st.write(filtered_data)
 
     # Прогрес-бар
@@ -80,7 +83,3 @@ if uploaded_file is not None:
 
 else:
     st.write("Завантажте CSV файл для початку.")
-
-
-
-
