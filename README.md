@@ -1,25 +1,60 @@
-# Ukraine Food Prices Streamlit App
+# Візуалізація цін на продукти в Україні
 
-This Streamlit app provides a visualization of food prices in Ukraine. The application allows users to upload CSV files containing food price data, view and analyze the data, and generate various types of charts.
+Цей проєкт є інтерактивним веб-додатком на платформі Streamlit, який візуалізує ціни на продукти харчування в Україні. Він дозволяє користувачам завантажувати CSV-файли з даними, аналізувати ціни на продукти, переглядати інтерактивні графіки та таблиці.
 
-## Features
+## Особливості
 
-- **Data Upload:** Upload CSV files containing food price data.
-- **Data Display:** View raw data and summaries in table format.
-- **Charts and Graphs:**
-  - **Line Charts** showing price trends over time using Plotly.
-  - **Bar Charts** for visualizing average prices by date using Matplotlib.
-- **Interactive Filters:** Select specific products to filter the displayed data.
-- **Progress Indicator:** Shows a loading spinner while processing data.
-- **Navigation:** Use a sidebar to navigate between different pages (Home, About Us, Contact).
-- **Custom Components:** Includes custom HTML components.
+- **Завантаження даних**: Користувачі можуть завантажити CSV-файл з цінами на продукти.
+- **Обробка даних**: Включає обробку та очищення даних, зокрема видалення зайвих колонок та заповнення відсутніх значень.
+- **Перегляд даних**: Таблиця з даними без зайвих колонок, що відображається в зручному форматі.
+- **Графіки з Plotly**: Інтерактивний лінійний графік для аналізу цін на різні категорії продуктів по датах.
+- **Графіки з Matplotlib**: Стовпчиковий графік середніх цін за кожну дату з оптимізованим відображенням дат.
+- **Інтерактивні елементи**: Можливість вибору конкретного продукту та перегляду відповідних даних.
 
-## Data
+## Вимоги
 
-The app expects CSV files with the following columns:
-- `date` - Date of the price record
-- `price` - Price of the product
-- `category` - Category or name of the product
+- Python 3.7 або вище
+- Streamlit
+- Pandas
+- Plotly
+- Matplotlib
 
+## Встановлення
 
+1. Клонувати цей репозиторій:
+    ```bash
+    git clone https://github.com/your-username/your-repository-name.git
+    ```
 
+2. Перейти до папки проєкту:
+    ```bash
+    cd your-repository-name
+    ```
+
+3. Встановити необхідні пакети:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Запустити Streamlit додаток:
+    ```bash
+    streamlit run streamlit_app.py
+    ```
+
+## Використання
+
+1. Після запуску додатку відкрийте його у веб-браузері.
+2. Завантажте CSV-файл з даними про ціни на продукти.
+3. Перегляньте таблиці та графіки з аналізом цін.
+
+## Структура Проєкту
+
+- `streamlit_app.py`: Головний файл додатку на Streamlit.
+- `README.md`: Інструкції з використання та інформація про проєкт.
+- `requirements.txt`: Список необхідних Python пакетів.
+
+## Контакти
+
+Якщо у вас є запитання або пропозиції щодо цього проєкту, будь ласка, зв'яжіться зі мною:
+- Email: [impossiblemir@gmail.com](mailto:impossiblemir@gmail.com)
+- GitHub: [KarynaVyl](https://github.com/KarynaVyl)
